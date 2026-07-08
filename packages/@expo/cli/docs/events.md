@@ -3,7 +3,7 @@
 Expo CLI emits structured JSONL events through [`2g`](https://github.com/kitten/2g), a
 low-overhead session logger that automated tooling and agents can discover, replay, tail,
 and export. The CLI uses the library directly — there is no in-tree wrapper. This doc covers
-how we define and emit events; to *read* sessions, run `2g --help`, which is self-describing.
+how we define and emit events; to _read_ sessions, run `2g --help`, which is self-describing.
 
 ## Activation
 
