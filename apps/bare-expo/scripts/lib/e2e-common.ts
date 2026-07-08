@@ -56,8 +56,15 @@ jsEngine: graaljs
   ];
   if (confirmFirstRunPromptIOS) {
     contents.push(`\
-# Run once to approve the first time deeplinking prompt on iOS (clearState above resets this)
+# Run once to approve the first time deeplinking prompt on iOS (clearState above resets this).
+# The prompt can take a while to show up while the app cold-starts after clearState, so wait
+# for it instead of racing it with an immediate tap; otherwise the approval silently doesn't
+# happen and the first test case's deep link opens the prompt instead of the test suite.
 - openLink: bareexpo://test-suite/run?tests=${testCases[0]}
+- extendedWaitUntil:
+    visible: "Open"
+    timeout: 20000
+    optional: true
 - tapOn:
     text: "Open"
     optional: true
