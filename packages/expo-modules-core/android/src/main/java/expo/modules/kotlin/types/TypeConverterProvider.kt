@@ -283,7 +283,11 @@ object TypeConverterProviderImpl : TypeConverterProvider {
       // It will always return Unit
       Unit::class.java to UnitTypeConverter(),
 
-      ReadableArguments::class.java to ReadableArgumentsTypeConverter()
+      ReadableArguments::class.java to ReadableArgumentsTypeConverter(),
+
+      Dynamic::class.java to createTrivialTypeConverter<Dynamic>(
+        ExpectedType(CppType.NONE)
+      ) { it }
     )
 
     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
